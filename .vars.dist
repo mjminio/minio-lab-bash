@@ -1,0 +1,15 @@
+#General Details
+USER=minio
+SHUTDOWN_AFTER_TIME=8
+
+#Passwords
+MINIO_PASSWORD=SomeSecurePassword
+CODE_SERVER_PASSWORD=SomeSecurePassword
+
+#Software Versions
+DOCKER_COMPOSE_VERSION=2.10.1
+CODE_SERVER_VERSION=4.5.1
+K3D_VERSION=v5.4.1
+
+#Lab Server Repos
+PUBLIC_LABS_REPO=https://github.com/mjminio/lab-test.git
