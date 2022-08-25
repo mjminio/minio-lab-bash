@@ -26,26 +26,9 @@ echo "Creating Minio user..."
 if id $USER &>/dev/null ; then
     echo "$USER exists. No need to add user."
 else
-    sudo adduser --disabled-password --gecos "" $USER
+    sudo adduser --shell /etc/zsh --disabled-password --gecos "" $USER
     sudo usermod -aG sudo $USER
     echo '$ a ${USER} ALL=(ALL:ALL) NOPASSWD: ALL' | EDITOR="sed -f- -i" visudo
-fi
-
-## Change Shell
-echo "Installing zsh and oh-my-zsh..."
-FILE=$HOME/.oh-my-zsh/oh-my-zsh.sh
-if [ -f "$FILE" ]; then
-    echo "$FILE exists. No need to install oh-my-zsh again."
-else
-    su minio
-    sudo mkdir -p /home/$USER/misc/dotfiles
-    sudo chmod 0777 -R /home/$USER
-    git clone https://github.com/AlphaBravoCompany/ab-dotfiles.git /home/$USER/misc/dotfiles/
-    chmod +x /home/$USER/misc/dotfiles/install.sh
-    cd /home/$USER/misc/dotfiles
-    ./install.sh
-    cd ~
-    exit
 fi
 
 ## Docker Things ##
