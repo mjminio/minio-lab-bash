@@ -23,11 +23,11 @@ software-properties-common telnet tree unzip zsh zsh-autosuggestions zip
 
 ## Create user
 echo "Creating Minio user..."
-if id $USER &>/dev/null ; then
-    echo "$USER exists. No need to add user."
+if id $MINIO_USER &>/dev/null ; then
+    echo "$MINIO_USER exists. No need to add user."
 else
-    sudo adduser --shell /etc/zsh --disabled-password --gecos "" $USER
-    sudo usermod -aG sudo $USER
+    sudo adduser --shell /etc/zsh --disabled-password --gecos "" $MINIO_USER
+    sudo usermod -aG sudo $MINIO_USER
     echo '$ a ${USER} ALL=(ALL:ALL) NOPASSWD: ALL' | EDITOR="sed -f- -i" visudo
 fi
 
@@ -41,7 +41,7 @@ else
     echo "$FILE does not exist. Installing Docker."
     curl -fsSL https://get.docker.com -o /tmp/get-docker.sh > /dev/null 2>&1
     sudo sh /tmp/get-docker.sh > /dev/null 2>&1
-    sudo usermod -aG docker $USER
+    sudo usermod -aG docker $MINIO_USER
 fi
 
 ## Installing Docker Compose

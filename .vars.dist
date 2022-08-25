@@ -1,5 +1,5 @@
 #General Details
-USER=minio
+MINIO_USER=minio
 SHUTDOWN_AFTER_TIME=8
 
 #Passwords
